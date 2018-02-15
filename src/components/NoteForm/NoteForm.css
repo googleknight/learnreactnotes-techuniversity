@@ -1,0 +1,25 @@
+.form{
+    display:flex;
+    justify-content: space-between;
+    flex-flow: column;
+    padding: 10px;
+    background-color: #EAE9EF;
+    height:80vh;
+}
+.titleContainer{
+    height:5vh;
+    display:flex;
+    justify-content: space-between;
+    flex-direction:row;
+}
+
+.message{
+    display: flex;
+    align-self: flex-start;
+}
+
+.saveButtonContainer{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
