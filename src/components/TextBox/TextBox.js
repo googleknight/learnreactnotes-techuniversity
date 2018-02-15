@@ -28,7 +28,8 @@ class TextBox extends Component {
                     this.props.getText(event)
                   }
               }
-              maxlength={this.props.maxlength}>
+              maxLength={this.props.maxlength}
+              value={this.props.value}>
             </textarea>
         </div>
     );

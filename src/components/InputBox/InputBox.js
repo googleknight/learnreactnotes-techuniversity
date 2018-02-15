@@ -10,6 +10,7 @@ class InputBox extends Component {
             onChange={(event)=>{
               this.props.getText(event)
             }}
+            value={this.props.value}
           />
         </div>
     );

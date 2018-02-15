@@ -4,7 +4,7 @@ class SaveButton extends Component {
   render() {
     return (
       <button 
-        class='saveButton' 
+        className='saveButton' 
         type='button'
         onClick={(event)=>{
           this.props.onClick(event)

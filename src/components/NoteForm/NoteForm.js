@@ -19,18 +19,22 @@ class NoteForm extends Component {
     }
   }
   countChars=(event)=>{
-    this.setState({charsleft:this.state.maxlength-event.target.value.length})
+    this.setState({charsleft:this.state.maxlength-event.target.value.length});
   }
   getTitle=(event)=>{
-    this.setState({notesTitle:event.target.value})
+    this.setState({notesTitle:event.target.value});
   }
   getBody=(event)=>{
-    this.setState({notesBody:event.target.value})
+    this.setState({notesBody:event.target.value});
   }
   saveData=(event)=>{
-    this.state.notes.push({notesTitle:this.state.notesTitle,notesBody:this.state.notesBody})
-    this.setState({notesTitle:'',notesBody:''})
-    this.setState(this.state)
+   // if(this.state.notesBody.length!=0 && this.notesTitle.length!=0){
+      let notesArray=this.state.notes;
+      notesArray.push({notesTitle:this.state.notesTitle,notesBody:this.state.notesBody})
+      this.setState({notes:notesArray,notesTitle:'',notesBody:'',charsleft:this.state.maxlength})
+      console.log(this.state.notes)
+   // }
+
   }
   render() {
     return (
@@ -41,15 +45,17 @@ class NoteForm extends Component {
         </div>
         <InputBox 
           placeholder='Tasks for today'
-          getText={this.getTitle}>
-        </InputBox>
+          getText={this.getTitle}
+          value={this.state.notesTitle}
+        />
         <MessageItalics>Please type your note below</MessageItalics>
         <TextBox 
           row='25' 
           maxlength={this.state.maxlength} 
           countChars={this.countChars}
-          getText={this.getBody}>
-        </TextBox>
+          getText={this.getBody}
+          value={this.state.notesBody}
+          />
         <div className='saveButtonContainer'>
             <SaveButton onClick={this.saveData}>Save</SaveButton>
             <Message>{this.state.charsleft+` characters left`}</Message>

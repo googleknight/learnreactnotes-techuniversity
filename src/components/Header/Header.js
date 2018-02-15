@@ -3,7 +3,7 @@ import './Header.css';
 class Header extends Component {
   render() {
     return (
-        <header>{this.props.children}</header>
+        <div className='header'>{this.props.children}</div>
     );
   }
 }
