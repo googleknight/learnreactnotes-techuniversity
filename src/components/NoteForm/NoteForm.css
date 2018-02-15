@@ -13,11 +13,6 @@
     flex-direction:row;
 }
 
-.message{
-    display: flex;
-    align-self: flex-start;
-}
-
 .saveButtonContainer{
     display: flex;
     flex-flow: row;

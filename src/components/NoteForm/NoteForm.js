@@ -13,10 +13,24 @@ class NoteForm extends Component {
     this.state={
       maxlength:120,
       charsleft:120,
+      notesTitle:'',
+      notesBody:'',
+      notes:[],
     }
   }
   countChars=(event)=>{
     this.setState({charsleft:this.state.maxlength-event.target.value.length})
+  }
+  getTitle=(event)=>{
+    this.setState({notesTitle:event.target.value})
+  }
+  getBody=(event)=>{
+    this.setState({notesBody:event.target.value})
+  }
+  saveData=(event)=>{
+    this.state.notes.push({notesTitle:this.state.notesTitle,notesBody:this.state.notesBody})
+    this.setState({notesTitle:'',notesBody:''})
+    this.setState(this.state)
   }
   render() {
     return (
@@ -25,15 +39,19 @@ class NoteForm extends Component {
             <Title>Note Title</Title>
             <LangButton>en</LangButton>
         </div>
-        <InputBox placeholder='Tasks for today'></InputBox>
-        <MessageItalics >Please type your note below</MessageItalics>
+        <InputBox 
+          placeholder='Tasks for today'
+          getText={this.getTitle}>
+        </InputBox>
+        <MessageItalics>Please type your note below</MessageItalics>
         <TextBox 
           row='25' 
           maxlength={this.state.maxlength} 
-          countChars={this.countChars}>
+          countChars={this.countChars}
+          getText={this.getBody}>
         </TextBox>
         <div className='saveButtonContainer'>
-            <SaveButton>Save</SaveButton>
+            <SaveButton onClick={this.saveData}>Save</SaveButton>
             <Message>{this.state.charsleft+` characters left`}</Message>
         </div>    
       </div>

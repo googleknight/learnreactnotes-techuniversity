@@ -3,7 +3,14 @@ import './SaveButton.css';
 class SaveButton extends Component {
   render() {
     return (
-      <button class='saveButton' type='button'>{this.props.children}</button>
+      <button 
+        class='saveButton' 
+        type='button'
+        onClick={(event)=>{
+          this.props.onClick(event)
+        }}
+        >
+        {this.props.children}</button>
     );
   }
 }

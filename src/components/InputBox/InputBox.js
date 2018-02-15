@@ -4,7 +4,13 @@ class InputBox extends Component {
   render() {
     return (
         <div>
-          <input type='text' placeholder={this.props.placeholder}/>
+          <input 
+            type='text'
+            placeholder={this.props.placeholder}
+            onChange={(event)=>{
+              this.props.getText(event)
+            }}
+          />
         </div>
     );
   }

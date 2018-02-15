@@ -25,6 +25,7 @@ class TextBox extends Component {
                   {
                     this.handleTextChange(event)
                     this.props.countChars(event)
+                    this.props.getText(event)
                   }
               }
               maxlength={this.props.maxlength}>
