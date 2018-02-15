@@ -11,8 +11,12 @@ class NoteForm extends Component {
   constructor(props){
     super(props)
     this.state={
-      maxlength:120
+      maxlength:120,
+      charsleft:120,
     }
+  }
+  countChars=(event)=>{
+    this.setState({charsleft:this.state.maxlength-event.target.value.length})
   }
   render() {
     return (
@@ -23,11 +27,14 @@ class NoteForm extends Component {
         </div>
         <InputBox placeholder='Tasks for today'></InputBox>
         <MessageItalics >Please type your note below</MessageItalics>
-        <TextBox row='25' maxlength={this.state.maxlength}>
+        <TextBox 
+          row='25' 
+          maxlength={this.state.maxlength} 
+          countChars={this.countChars}>
         </TextBox>
         <div className='saveButtonContainer'>
             <SaveButton>Save</SaveButton>
-            <Message>150 characters</Message>
+            <Message>{this.state.charsleft+` characters left`}</Message>
         </div>    
       </div>
     );

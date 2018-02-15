@@ -20,7 +20,13 @@ class TextBox extends Component {
             <textarea
               className={this.state.className}
               rows={this.props.row}
-              onChange={(event)=>this.handleTextChange(event)}
+              onChange={
+                (event)=>
+                  {
+                    this.handleTextChange(event)
+                    this.props.countChars(event)
+                  }
+              }
               maxlength={this.props.maxlength}>
             </textarea>
         </div>
