@@ -1,0 +1,17 @@
+.ViewNotes{
+    display:flex;
+    flex-direction: column;
+    width:100vh;
+    margin:auto;
+    border: 1px solid #000;
+  }
+.ViewNotesContainer{
+  display:flex;
+  justify-content: flex-start;
+  flex-flow: column;
+  padding: 10px;
+  overflow-y: auto;
+  background-color: #EAE9EF;
+  max-height:90vh;
+  height:90vh;
+  }

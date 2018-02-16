@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import './MessageItalics.css'
+import './MessageItalics.css';
+
 class Message extends Component {
   render() {
     return (
-        <div>
-            <label className='Italics'>{this.props.children}</label>
-        </div>
+      <div>
+        <label className="Italics">{this.props.children}</label>
+      </div>
     );
   }
 }

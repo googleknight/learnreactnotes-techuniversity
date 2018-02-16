@@ -3,9 +3,10 @@ import Title from '../Title/Title';
 import Message from '../Message/Message';
 import MessageItalics from '../MessageItalics/MessageItalics'
 import LangButton from '../LangButton/LangButton';
-import SaveButton from '../SaveButton/SaveButton';
+import ActionButton from '../ActionButton/ActionButton';
 import TextBox from '../TextBox/TextBox';
 import InputBox from '../InputBox/InputBox';
+import PropTypes from 'prop-types';
 import './NoteForm.css';
 class NoteForm extends Component {
   constructor(props){
@@ -30,9 +31,9 @@ class NoteForm extends Component {
   saveData=(event)=>{
    // if(this.state.notesBody.length!=0 && this.notesTitle.length!=0){
       let notesArray=this.state.notes;
-      notesArray.push({notesTitle:this.state.notesTitle,notesBody:this.state.notesBody})
-      this.setState({notes:notesArray,notesTitle:'',notesBody:'',charsleft:this.state.maxlength})
-      console.log(this.state.notes)
+     let currNote ={notesTitle:this.state.notesTitle,notesBody:this.state.notesBody}
+      this.setState({notesTitle:'',notesBody:'',charsleft:this.state.maxlength})
+      this.props.callBackfromNotes(currNote);
    // }
 
   }
@@ -57,7 +58,7 @@ class NoteForm extends Component {
           value={this.state.notesBody}
           />
         <div className='saveButtonContainer'>
-            <SaveButton onClick={this.saveData}>Save</SaveButton>
+            <ActionButton onClick={this.saveData}>Save</ActionButton>
             <Message>{this.state.charsleft+` characters left`}</Message>
         </div>    
       </div>
