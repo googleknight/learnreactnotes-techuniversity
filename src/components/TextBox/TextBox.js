@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './TextBox.css';
 
 class TextBox extends Component {
@@ -31,6 +32,19 @@ class TextBox extends Component {
       </div>
     );
   }
+}
+
+TextBox.PropTypes={
+  maxlength:PropTypes.number,
+  row:PropTypes.number,
+  countChars:PropTypes.func,
+  getText:PropTypes.func
+}
+TextBox.defaultProps={
+  maxlength:150,
+  row:10,
+  countChars:()=>null,
+  getText:()=>null
 }
 
 export default TextBox;

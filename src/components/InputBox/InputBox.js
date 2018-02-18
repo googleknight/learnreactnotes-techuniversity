@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './InputBox.css';
 
 class InputBox extends Component {
@@ -18,5 +19,14 @@ class InputBox extends Component {
     );
   }
 }
+InputBox.propTypes={
+  placeholder:PropTypes.string,
+  getText:PropTypes.func
+}
+InputBox.defaultProps={
+  placeholder:'Type here',
+  getText:()  =>null,
+}
+
 
 export default InputBox;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './NotesBody.css';
 
 class NotesBody extends Component {
@@ -6,7 +7,7 @@ class NotesBody extends Component {
     return (
       <textarea
         className="NotesBody"
-        readOnly
+        onClick={this.props.callBackfromNotes}
         rows="5"
         value={this.props.children}
       />
@@ -14,4 +15,10 @@ class NotesBody extends Component {
   }
 }
 
+NotesBody.PropTypes={
+  callBackfromNotes:PropTypes.func
+}
+NotesBody.defaultProps={
+  callBackfromNotes:()=>null,
+}
 export default NotesBody;

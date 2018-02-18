@@ -14,9 +14,9 @@ class NoteForm extends Component {
     this.state={
       maxlength:120,
       charsleft:120,
-      notesTitle:'',
-      notesBody:'',
-      notes:[],
+      notesTitle:this.props.note!=null?this.props.note.notesTitle:'',
+      notesBody:this.props.note!=null?this.props.note.notesBody:'',
+      notes:this.props.note!=null?this.props.note:[],
     }
   }
   countChars=(event)=>{
@@ -31,7 +31,7 @@ class NoteForm extends Component {
   saveData=(event)=>{
    // if(this.state.notesBody.length!=0 && this.notesTitle.length!=0){
       let notesArray=this.state.notes;
-     let currNote ={notesTitle:this.state.notesTitle,notesBody:this.state.notesBody}
+      let currNote ={notesTitle:this.state.notesTitle,notesBody:this.state.notesBody,key:this.state.notes.key}
       this.setState({notesTitle:'',notesBody:'',charsleft:this.state.maxlength})
       this.props.callBackfromNotes(currNote);
    // }
@@ -65,5 +65,13 @@ class NoteForm extends Component {
     );
   }
 }
+NoteForm.propTypes = {
+  callBackfromNotes: PropTypes.func,
+  note:PropTypes.object
+}
 
+NoteForm.defaultProps = {
+  callBackfromNotes: ()=>null,
+  note:[]
+};
 export default NoteForm;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Footer.css';
+import PropTypes from 'prop-types';
 import ActionButton from '../ActionButton/ActionButton';
 
 class Footer extends Component {
@@ -11,6 +12,11 @@ class Footer extends Component {
     );
   }
 }
-
+Footer.propTypes={
+  onClick:PropTypes.func
+}
+Footer.defaultProps={
+  onClick:()  =>null,
+}
 
 export default Footer;
