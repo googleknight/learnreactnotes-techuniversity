@@ -7,13 +7,13 @@ import NoteForm from '../NoteForm/NoteForm';
 
 class Notes extends Component {
   handleOnClick=(event)=>{
-    this.props.callBackfromViewNotes(this.props.note.key);
+    this.props.callBackfromViewNotes(this.props.note.key,this.props.note.body,this.props.note.title);
   }
   render() {
     return (
       <div className="Notes">
-        <Title>{this.props.note.notesTitle}</Title>
-        <NotesBody callBackfromNotes={this.handleOnClick}>{this.props.note.notesBody}</NotesBody>
+        <Title>{this.props.note.title}</Title>
+        <NotesBody callBackfromNotes={this.handleOnClick}>{this.props.note.body}</NotesBody>
       </div>
     );
   }

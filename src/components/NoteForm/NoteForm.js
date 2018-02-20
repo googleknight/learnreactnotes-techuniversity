@@ -7,35 +7,34 @@ import ActionButton from '../ActionButton/ActionButton';
 import TextBox from '../TextBox/TextBox';
 import InputBox from '../InputBox/InputBox';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createNote,changePage } from "../../redux/actions";
 import './NoteForm.css';
 class NoteForm extends Component {
   constructor(props){
-    super(props)
+    super(props);
     this.state={
       maxlength:120,
       charsleft:120,
-      notesTitle:this.props.note!=null?this.props.note.notesTitle:'',
-      notesBody:this.props.note!=null?this.props.note.notesBody:'',
-      notes:this.props.note!=null?this.props.note:[],
+      key:this.props.key,
+      title: this.props.title,
+      body: this.props.body,
     }
   }
   countChars=(event)=>{
     this.setState({charsleft:this.state.maxlength-event.target.value.length});
   }
   getTitle=(event)=>{
-    this.setState({notesTitle:event.target.value});
+    this.setState({title:event.target.value});
   }
   getBody=(event)=>{
-    this.setState({notesBody:event.target.value});
+    this.setState({body:event.target.value});
   }
   saveData=(event)=>{
-   // if(this.state.notesBody.length!=0 && this.notesTitle.length!=0){
-      let notesArray=this.state.notes;
-      let currNote ={notesTitle:this.state.notesTitle,notesBody:this.state.notesBody,key:this.state.notes.key}
-      this.setState({notesTitle:'',notesBody:'',charsleft:this.state.maxlength})
-      this.props.callBackfromNotes(currNote);
-   // }
-
+  //  let currNote ={notesTitle:this.state.notesTitle,notesBody:this.state.notesBody,key:this.state.notes.key};
+  this.setState({title:'',body:'',charsleft:this.state.maxlength});
+  //  this.props.callBackfromNotes(currNote);
+   this.props.onSave(this.props.id, this.state.body, this.state.title);
   }
   render() {
     return (
@@ -47,7 +46,7 @@ class NoteForm extends Component {
         <InputBox 
           placeholder='Tasks for today'
           getText={this.getTitle}
-          value={this.state.notesTitle}
+          value={this.state.title}
         />
         <MessageItalics>Please type your note below</MessageItalics>
         <TextBox 
@@ -55,23 +54,38 @@ class NoteForm extends Component {
           maxlength={this.state.maxlength} 
           countChars={this.countChars}
           getText={this.getBody}
-          value={this.state.notesBody}
+          value={this.state.body}
           />
         <div className='saveButtonContainer'>
             <ActionButton onClick={this.saveData}>Save</ActionButton>
             <Message>{this.state.charsleft+` characters left`}</Message>
         </div>    
+        <button className='view-navgiation-button' onClick={()=>this.props.changePage()}>ViewNotes</button>
       </div>
     );
   }
 }
-NoteForm.propTypes = {
-  callBackfromNotes: PropTypes.func,
-  note:PropTypes.object
-}
+const mapStateToProps = state => ({
+  id: state.navigation.currentNote.key,
+  title: state.navigation.currentNote.title,
+  body: state.navigation.currentNote.body,
+});
 
-NoteForm.defaultProps = {
-  callBackfromNotes: ()=>null,
-  note:[]
-};
-export default NoteForm;
+const mapDispatchToProps = dispatch => ({
+  onSave: ((key, body, title) => {
+    dispatch(createNote({ key, body, title }));
+  }),
+  changePage: ()=>dispatch(changePage('viewnotes', undefined)),
+});
+
+
+// NoteForm.propTypes = {
+//   callBackfromNotes: PropTypes.func,
+//   note:PropTypes.object
+// }
+
+// NoteForm.defaultProps = {
+//   callBackfromNotes: ()=>null,
+//   note:[]
+// };
+export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
